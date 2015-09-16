@@ -1,0 +1,7 @@
+namespace :load do
+  task :defaults do
+    set :rbenv_root, '~/.rbenv'
+    set :rbenv_roles, :all
+    set :rbenv_map_bins, %w( bundle bundler erb gem irb rake rdoc ri ruby rails )
+  end
+end

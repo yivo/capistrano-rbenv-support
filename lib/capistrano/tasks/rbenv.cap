@@ -1,0 +1,13 @@
+namespace :rbenv do
+  task :map_bins do
+    rbenv_root = expand_home_dir(fetch(:rbenv_root), user: fetch(:user))
+    SSHKit.config.default_env.merge!(rbenv_root: rbenv_root)
+    fetch(:rbenv_map_bins).each do |command|
+      SSHKit.config.command_map[command.to_sym] = "#{rbenv_root}/shims/#{command}"
+    end
+  end
+end
+
+Capistrano::DSL.stages.each do |stage|
+  after stage, 'rbenv:map_bins'
+end
