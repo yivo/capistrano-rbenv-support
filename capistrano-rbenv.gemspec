@@ -4,8 +4,8 @@ Gem::Specification.new do |spec|
   spec.version       = '1.0.0'
   spec.authors       = ['Yaroslav Konoplov']
   spec.email         = ['yaroslav@inbox.com']
-  spec.summary       = 'TODO'
-  spec.description   = 'TODO'
+  spec.summary       = 'foo'
+  spec.description   = 'foo'
   spec.homepage      = ''
   spec.license       = 'MIT'
 
