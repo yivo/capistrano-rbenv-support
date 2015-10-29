@@ -1,11 +1,12 @@
 namespace :rbenv do
   task :map_bins do
-    rbenv_root = expand_home_dir(fetch(:rbenv_root), user: fetch(:user))
+    rbenv_root    = fetch(:rbenv_root)
+    rbenv_prefix  = fetch(:rbenv_prefix, "#{rbenv_root}/bin/rbenv exec")
 
-    rbenv_prefix = fetch(:rbenv_prefix, -> { "#{rbenv_root}/bin/rbenv exec" })
     SSHKit.config.command_map[:rbenv] = "#{rbenv_root}/bin/rbenv"
     fetch(:rbenv_map_bins).each do |command|
       SSHKit.config.command_map.prefix[command.to_sym].unshift(rbenv_prefix)
+      SSHKit.config.command_map[:"#{command}_shim"] = File.join(rbenv_root, 'shims', command)
     end
   end
 end
