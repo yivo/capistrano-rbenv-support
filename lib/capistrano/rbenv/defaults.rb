@@ -1,1 +1,0 @@
-load File.expand_path('../../tasks/defaults.cap', __FILE__)
